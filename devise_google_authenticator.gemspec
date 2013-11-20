@@ -21,15 +21,16 @@ Gem::Specification.new do |s|
   s.required_ruby_version = '>= 1.8.6'
   s.required_rubygems_version = '>= 1.3.6'
 
-  s.add_development_dependency('bundler', '~> 1.3.0')
+  s.add_development_dependency 'bundler'
+  s.add_development_dependency 'sqlite3'
+  s.add_development_dependency 'capybara'
+  s.add_development_dependency 'shoulda'
+  s.add_development_dependency 'mocha'
+  s.add_development_dependency 'rails', '~> 3.2'
 
-  {
-    'railties' => '~> 3.0',
-    'actionmailer' => '~> 3.0',
-    'devise' => '>= 2.2.0',
-    'rotp'   => '~> 1.4.0'
-  }.each do |lib, version|
-    s.add_runtime_dependency(lib, *version)
-  end
+  s.add_dependency 'railties', '~> 3.2'
+  s.add_dependency 'actionmailer', '~> 3.2'
+  s.add_dependency 'devise'
+  s.add_dependency 'rotp'
 
 end
