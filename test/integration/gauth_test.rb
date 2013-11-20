@@ -6,16 +6,12 @@ class InvitationTest < ActionDispatch::IntegrationTest
     Capybara.reset_sessions!
   end
 
-  test 'register new user - confirm that we get a display qr page after registering' do
+  test 'register new user - confirm that we do not get a display qr page after registering' do
     visit new_user_registration_path
     fill_in 'user_email', :with => 'test@test.com'
     fill_in 'user_password', :with => 'password'
     fill_in 'user_password_confirmation', :with => 'password'
     click_button 'Sign up'
-
-    assert_equal user_displayqr_path, current_path
-
-    click_button 'Continue...'
 
     assert_equal root_path, current_path
   end

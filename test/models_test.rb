@@ -47,7 +47,7 @@ class ModelsTest < ActiveSupport::TestCase
   end
 
   test 'google_authenticatable attributes' do
-    assert_equal 'f', User.new.gauth_enabled
+    assert_equal false, User.new.gauth_enabled
     assert_nil User.new.gauth_tmp
     assert_nil User.new.gauth_tmp_datetime
   end
