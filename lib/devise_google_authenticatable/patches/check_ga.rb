@@ -25,6 +25,10 @@ module DeviseGoogleAuthenticator::Patches
 
       end
 
+      define_method :checkga_path_for do |resource, opts|
+        opts.merge( { :controller => 'checkga', :action => 'show' } )
+      end
+
     end
   end
 end
