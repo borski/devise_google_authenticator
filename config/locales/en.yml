@@ -10,3 +10,4 @@ en:
     checkga:
       user:
         signed_in: "Signed in successfully from token."
+        error: "Your two factor authentication token was invalid."

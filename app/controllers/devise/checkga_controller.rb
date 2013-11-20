@@ -21,7 +21,7 @@ class Devise::CheckgaController < Devise::SessionsController
         sign_in(resource_name,resource)
         respond_with resource, :location => after_sign_in_path_for(resource)
       else
-        flash[:error] = "Your two factor authentication token was invalid. #{ view_context.support_message }".html_safe if is_navigational_format?
+        set_flash_message(:error, :error) if is_navigational_format?
         respond_with resource, :location => new_session_path(resource_name)
       end
 
