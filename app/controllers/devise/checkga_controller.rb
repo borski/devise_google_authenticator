@@ -1,7 +1,7 @@
 class Devise::CheckgaController < Devise::SessionsController
   prepend_before_filter :require_no_authentication, :only => [ :show, :update ]
   include Devise::Controllers::Helpers
-  
+
   def show
     @tmpid = params[:id]
     if @tmpid.nil?
@@ -10,7 +10,7 @@ class Devise::CheckgaController < Devise::SessionsController
       render :show
     end
   end
-  
+
   def update
     resource = resource_class.find_by_gauth_tmp(params[resource_name]['tmpid'])
 
@@ -21,7 +21,8 @@ class Devise::CheckgaController < Devise::SessionsController
         sign_in(resource_name,resource)
         respond_with resource, :location => after_sign_in_path_for(resource)
       else
-        redirect_to :root
+        flash[:error] = "Your two factor authentication token was invalid. #{ view_context.support_message }".html_safe if is_navigational_format?
+        respond_with resource, :location => new_session_path(resource_name)
       end
 
     else
