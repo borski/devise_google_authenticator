@@ -22,7 +22,7 @@ Gem::Specification.new do |s|
   s.required_rubygems_version = '>= 1.3.6'
 
   s.add_development_dependency('bundler', '~> 1.3.0')
-  
+
   {
     'railties' => '~> 3.0',
     'actionmailer' => '~> 3.0',
@@ -31,5 +31,5 @@ Gem::Specification.new do |s|
   }.each do |lib, version|
     s.add_runtime_dependency(lib, *version)
   end
-  
+
 end

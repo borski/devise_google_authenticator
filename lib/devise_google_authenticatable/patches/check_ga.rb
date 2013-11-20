@@ -16,8 +16,7 @@ module DeviseGoogleAuthenticator::Patches
           warden.logout #log the user out
 
           #we head back into the checkga controller with the temporary id
-          respond_with resource, :location => { :controller => 'checkga', :action => 'show', :id => tmpid}
-
+          respond_with resource, :location => checkga_path_for(resource, {:id => tmpid})
         else #It's not using, or not enabled for Google 2FA - carry on, nothing to see here.
           set_flash_message(:notice, :signed_in) if is_navigational_format?
           sign_in(resource_name, resource)
@@ -25,7 +24,7 @@ module DeviseGoogleAuthenticator::Patches
         end
 
       end
-      
+
     end
   end
 end
