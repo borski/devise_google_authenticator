@@ -5,13 +5,14 @@ class DeviseGoogleAuthenticatorAddTo<%= table_name.camelize %> < ActiveRecord::M
       t.boolean  :gauth_enabled, :default => false
       t.string  :gauth_tmp
       t.datetime  :gauth_tmp_datetime
+      t.string  :gauth_backup_code
     end
 
   end
 
   def self.down
     change_table :<%= table_name %> do |t|
-      t.remove :gauth_secret, :gauth_enabled, :gauth_tmp, :gauth_tmp_datetime
+      t.remove :gauth_secret, :gauth_enabled, :gauth_tmp, :gauth_tmp_datetime, :gauth_backup_code
     end
   end
 end

@@ -18,7 +18,7 @@ module Devise # :nodoc:
         def get_qr
           self.gauth_secret
         end
-        
+
         def set_gauth_enabled(param)
           self.update_without_password(param)
         end
@@ -40,7 +40,7 @@ module Devise # :nodoc:
               valid_vals << ROTP::TOTP.new(self.get_qr).at(Time.now.ago(30*cc))
               valid_vals << ROTP::TOTP.new(self.get_qr).at(Time.now.in(30*cc))
             end
-            
+
             if valid_vals.include?(token.to_i)
               return true
             else
@@ -53,6 +53,7 @@ module Devise # :nodoc:
 
         def assign_auth_secret
           self.gauth_secret = ROTP::Base32.random_base32(64)
+          self.gauth_backup_code = ROTP::Base32.random_base32(16)
         end
 
       end
